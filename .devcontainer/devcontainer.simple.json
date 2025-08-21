@@ -1,0 +1,55 @@
+{
+    "name": "React Development Environment",
+    // Use Microsoft's pre-built Node.js image (faster and more reliable)
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-24-bullseye",
+    // Features to add to the dev container
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    // Use 'forwardPorts' to make ports available locally
+    "forwardPorts": [
+        3000,
+        5173,
+        8080
+    ],
+    // Use 'postCreateCommand' to run commands after container creation
+    "postCreateCommand": "cd my-react-app && npm install",
+    // VS Code specific configuration
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": "explicit"
+                },
+                "javascript.preferences.quoteStyle": "single",
+                "typescript.preferences.quoteStyle": "single",
+                "emmet.includeLanguages": {
+                    "javascript": "javascriptreact"
+                },
+                "emmet.triggerExpansionOnTab": true
+            },
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint",
+                "bradlc.vscode-tailwindcss",
+                "formulahendry.auto-rename-tag",
+                "christian-kohler.path-intellisense",
+                "ms-vscode.vscode-typescript-next",
+                "ms-vscode.vscode-json",
+                "ritwickdey.LiveServer",
+                "xabikos.ReactSnippets",
+                "burkeholland.simple-react-snippets"
+            ]
+        }
+    },
+    // Run as non-root user
+    "remoteUser": "node",
+    // Mount git directory
+    "mounts": [
+        "source=${localWorkspaceFolder}/.git,target=${containerWorkspaceFolder}/.git,type=bind,consistency=cached"
+    ]
+}
