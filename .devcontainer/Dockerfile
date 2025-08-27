@@ -1,4 +1,4 @@
-FROM node:24-trixie
+FROM node:24-bookworm
 
 # Install some dependencies such as curl and sudo.
 # Also set up passwordless sudo for the ubuntu user.
